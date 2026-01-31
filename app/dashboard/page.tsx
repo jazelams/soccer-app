@@ -42,7 +42,10 @@ export default function DashboardPage() {
             .catch(err => {
                 console.error(err);
                 if (err.response?.status === 401) router.push('/login');
-                else setError('Error de conexión con el servidor.');
+                else {
+                    const message = err.response?.data?.details || err.response?.data?.error || 'Error de conexión con el servidor.';
+                    setError(message);
+                }
             })
             .finally(() => setLoading(false));
     };

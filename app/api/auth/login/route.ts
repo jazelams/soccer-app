@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/app/lib/prisma';
+import { prisma } from '../../../lib/prisma';
 import bcrypt from 'bcryptjs';
-import { generateToken } from '@/app/lib/auth';
+import { generateToken } from '../../../lib/auth';
 
 export const dynamic = 'force-dynamic';
 

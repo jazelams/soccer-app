@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/app/lib/prisma';
-import { checkAuth, unauthorized, forbidden } from '@/app/lib/api-utils';
+import { prisma } from '../../lib/prisma';
+import { checkAuth, unauthorized, forbidden } from '../../lib/api-utils';
 import { z } from 'zod';
 
 const paymentSchema = z.object({

@@ -4,13 +4,13 @@ import { checkAuth, unauthorized, forbidden } from '@/app/lib/api-utils';
 
 export async function GET(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     const user: any = await checkAuth(request);
     if (!user) return unauthorized();
 
     try {
-        const id = (await params).id;
+        const { id } = await params;
         const teamId = Number(id);
 
         // Security check: Only Admin, Treasurer, or the Team's own user

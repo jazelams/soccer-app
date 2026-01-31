@@ -4,14 +4,14 @@ import { checkAuth, unauthorized, forbidden } from '@/app/lib/api-utils';
 
 export async function PATCH(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     const user: any = await checkAuth(request);
     if (!user) return unauthorized();
     if (!['ADMIN', 'TREASURER'].includes(user.role)) return forbidden();
 
     try {
-        const id = (await params).id;
+        const { id } = await params;
         const teamId = Number(id);
         const { matchday, status } = await request.json();
 

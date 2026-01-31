@@ -11,13 +11,13 @@ const updateTournamentSchema = z.object({
 
 export async function GET(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     const user = await checkAuth(request);
     if (!user) return unauthorized();
 
     try {
-        const id = (await params).id;
+        const { id } = await params;
         const tournament = await prisma.tournament.findUnique({
             where: { id: Number(id) },
             include: {
@@ -40,14 +40,14 @@ export async function GET(
 
 export async function PUT(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     const user: any = await checkAuth(request);
     if (!user) return unauthorized();
     if (user.role !== 'ADMIN') return forbidden();
 
     try {
-        const id = (await params).id;
+        const { id } = await params;
         const body = await request.json();
         const data = updateTournamentSchema.parse(body);
 

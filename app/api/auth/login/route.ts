@@ -3,6 +3,8 @@ import { prisma } from '@/app/lib/prisma';
 import bcrypt from 'bcryptjs';
 import { generateToken } from '@/app/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: Request) {
     try {
         const { username, password } = await request.json();

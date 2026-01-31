@@ -13,6 +13,8 @@ const paymentSchema = z.object({
     notes: z.string().optional()
 });
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: Request) {
     const user: any = await checkAuth(request);
     if (!user) return unauthorized();

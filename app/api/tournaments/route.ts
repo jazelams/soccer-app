@@ -9,6 +9,8 @@ const tournamentSchema = z.object({
     startDate: z.string().optional(),
 });
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: Request) {
     const user = await checkAuth(request);
     if (!user) return unauthorized();

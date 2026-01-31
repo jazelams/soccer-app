@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/app/lib/prisma';
 import { checkAuth, unauthorized, forbidden } from '@/app/lib/api-utils';
 
+export const dynamic = 'force-dynamic';
+
 export async function PATCH(
     request: Request,
     { params }: { params: Promise<{ id: string }> }

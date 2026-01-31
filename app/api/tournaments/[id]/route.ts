@@ -9,6 +9,8 @@ const updateTournamentSchema = z.object({
     status: z.enum(['ACTIVE', 'FINISHED']).optional(),
 });
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(
     request: Request,
     { params }: { params: Promise<{ id: string }> }

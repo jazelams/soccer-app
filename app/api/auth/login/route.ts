@@ -23,8 +23,11 @@ export async function POST(request: Request) {
             token,
             user: { id: user.id, username: user.username, role: user.role }
         });
-    } catch (error) {
-        console.error('Login error:', error);
-        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    } catch (error: any) {
+        console.error('Login error full:', error);
+        return NextResponse.json({
+            error: 'Internal Server Error',
+            details: error.message
+        }, { status: 500 });
     }
 }

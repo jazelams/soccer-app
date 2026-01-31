@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '../../../lib/prisma';
 import bcrypt from 'bcryptjs';
 import { generateToken } from '../../../lib/auth';
 
@@ -17,6 +16,9 @@ export async function POST(request: Request) {
                 user: { id: 0, username: 'admin', role: 'ADMIN' }
             });
         }
+
+        // Importar prisma solo si realmente se necesita (para no romper el login maestro si falla la DB)
+        const { prisma } = await import('../../../lib/prisma');
 
         const user = await prisma.user.findUnique({
             where: { username }

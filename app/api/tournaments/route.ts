@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/app/lib/prisma';
-import { checkAuth, unauthorized, forbidden } from '@/app/lib/api-utils';
+import { prisma } from '../../lib/prisma';
+import { checkAuth, unauthorized, forbidden } from '../../lib/api-utils';
 import { z } from 'zod';
 
 const tournamentSchema = z.object({
@@ -25,8 +25,12 @@ export async function GET(request: Request) {
             }
         });
         return NextResponse.json(tournaments);
-    } catch (error) {
-        return NextResponse.json({ error: 'Error fetching tournaments' }, { status: 500 });
+    } catch (error: any) {
+        console.error('Fetch tournaments error:', error);
+        return NextResponse.json({
+            error: 'Error fetching tournaments',
+            details: error.message
+        }, { status: 500 });
     }
 }
 

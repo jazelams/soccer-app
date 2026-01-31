@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+:root {
+  --foreground-rgb: 226, 232, 240;
+  --background-start-rgb: 10, 10, 10;
+  --background-end-rgb: 0, 0, 0;
+
+  /* Red Wine Palette */
+  --wine-base: #722F37;
+  --wine-dark: #4a1a21;
+  --wine-light: #9e1b32;
+  --wine-glow: rgba(158, 27, 50, 0.5);
+}
+
+@theme {
+  --color-wine-base: var(--wine-base);
+  --color-wine-dark: var(--wine-dark);
+  --color-wine-light: var(--wine-light);
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.font-serif {
+  font-family: var(--font-playfair), serif;
+}
+
+.font-sans {
+  font-family: var(--font-lato), sans-serif;
+}
